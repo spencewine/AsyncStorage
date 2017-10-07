@@ -49,7 +49,7 @@ export class AsyncStorage extends AsyncStorageInterface {
     }
 
     static multiGet(keyArray, callback) {
-        let promiseArray = keyArray.map(function(key){
+        let promiseArray = keyArray.map(function(key) {
            return new Promise(function (resolve) {
                 let value = localStorage.getItem(`@AsyncStorage:${key}`);
 
@@ -58,17 +58,17 @@ export class AsyncStorage extends AsyncStorageInterface {
                 resolve([key, value]);
             });
         })
-        return Promise.all(promiseArray)
+        return Promise.all(promiseArray);
     }
 
     static multiSet(keyValueArrays, callback) {
-        let promiseArray =  keyValueArrays.map(function(keyValueArray){
+        let promiseArray = keyValueArrays.map(function(keyValueArray) {
             return new Promise(function (resolve) {
                 localStorage.setItem(`@AsyncStorage:${keyValueArray[0]}`, keyValueArray[1]);
                 if (callback) callback();
                 resolve();
             });
         })
-        return Promise.all(promiseArray)
+        return Promise.all(promiseArray);
     }
 }
